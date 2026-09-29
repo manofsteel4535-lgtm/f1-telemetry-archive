@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#11130f" />
+    <meta
+      name="description"
+      content="Explore every Formula 1 World Championship circuit since 1950. Interactive circuit maps, historical configurations and sim-racing corner notes."
+    />
+    <title>F1 Telemetry Archive — Every circuit. Every era.</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2311130f'/%3E%3Cpath d='M5 23 13 8h15l-4 7H16l-4 8Z' fill='%23dbfc58'/%3E%3C/svg%3E"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#archive">Skip to circuit archive</a>
+    <div id="intro" aria-hidden="true">
+      <div class="intro-inner">
+        <p class="eyebrow">INITIALIZING CIRCUIT DATABASE</p>
+        <svg viewBox="0 0 720 460"><path id="intro-path" /></svg>
+        <h1><span>F1</span> <span>TELEMETRY</span> <span>ARCHIVE</span></h1>
+        <div class="load-line"><i></i></div>
+        <p class="mono">1950 — PRESENT / MOTORSPORT MEMORY</p>
+      </div>
+      <button id="skip-intro" tabindex="-1">Skip intro</button>
+    </div>
+    <div id="cursor" aria-hidden="true">
+      <span></span><i></i><small></small>
+    </div>
+    <div class="desktop-notice">
+      <strong>DESIGNED FOR THE DESKTOP.</strong>
+      <p>
+        Open this archive on a desktop display, at least 1024 pixels wide, for
+        the complete circuit experience.
+      </p>
+      <span>F1 / TELEMETRY ARCHIVE</span>
+    </div>
+    <div id="app">
+      <header class="site-header">
+        <a href="#" class="brand" aria-label="Telemetry Archive home"
+          ><span class="brand-mark">F/</span
+          ><span>TELEMETRY<br /><b>ARCHIVE</b></span></a
+        >
+        <nav aria-label="Main navigation">
+          <a href="#archive" class="active">Circuit archive <span>01</span></a
+          ><button id="era-nav">Explore by era <span>02</span></button
+          ><button id="about">About the archive <span>03</span></button>
+        </nav>
+        <div class="header-meta">
+          <span class="status-dot"></span>1950 — 2026<span class="edition"
+            >VOL. 001</span
+          >
+        </div>
+      </header>
+      <main>
+        <section class="masthead">
+          <div class="eyebrow">
+            <span class="tiny-cross">+</span> THE WORLD CHAMPIONSHIP, MAPPED.
+          </div>
+          <div class="title-row">
+            <h1>EVERY CIRCUIT.<br /><span>EVERY ERA.</span></h1>
+            <div class="masthead-note">
+              <span class="outline-icon">◎</span>
+              <p>
+                Seventy-six years of racing.<br />One living circuit archive.
+              </p>
+              <a href="#archive">FIND YOUR NEXT LAP <span>↓</span></a>
+            </div>
+          </div>
+          <div class="masthead-bottom">
+            <span>BUILT FOR THE ONES WHO KNOW EVERY APEX.</span
+            ><span
+              ><b id="total-count">78</b> CIRCUITS <i>/</i>
+              <b id="country-count">00</b> COUNTRIES <i>/</i> ENDLESS RACING
+              LINES</span
+            >
+          </div>
+        </section>
+        <section id="featured" aria-label="Featured circuit">
+          <div class="feature-top">
+            <span><i class="status-dot"></i> CIRCUIT IN FOCUS</span
+            ><span id="focus-coordinate"></span>
+            <div>
+              <button id="prev-feature" aria-label="Previous featured circuit">
+                ←</button
+              ><span id="feature-number">01 / 06</span
+              ><button id="next-feature" aria-label="Next featured circuit">
+                →
+              </button>
+            </div>
+          </div>
+          <div class="feature-content">
+            <div class="feature-info">
+              <p class="eyebrow" id="focus-country"></p>
+              <h2 id="focus-name"></h2>
+              <p id="focus-description"></p>
+              <div class="feature-metrics" id="focus-metrics"></div>
+              <button class="primary" id="open-feature">
+                EXPLORE CIRCUIT <span>⊕</span>
+              </button>
+            </div>
+            <div class="feature-map-panel">
+              <span class="map-meta">CIRCUIT GEOMETRY <b>/</b> PLAN VIEW</span>
+              <div id="focus-map" class="map-stage"></div>
+              <span class="map-cross tl">+</span
+              ><span class="map-cross tr">+</span
+              ><span class="map-cross bl">+</span
+              ><span class="map-cross br">+</span>
+              <div class="sector-legend">
+                <span><i class="s1"></i>SECTOR 01</span
+                ><span><i class="s2"></i>SECTOR 02</span
+                ><span><i class="s3"></i>SECTOR 03</span
+                ><em>ILLUSTRATIVE SECTOR SPLIT</em>
+              </div>
+              <div class="map-compass">N<br />↑</div>
+            </div>
+          </div>
+          <div class="feature-bottom">
+            <span id="focus-tag"></span
+            ><span>SELECT A CIRCUIT. GET CLOSER.</span
+            ><span>SCROLL TO DISCOVER ↓</span>
+          </div>
+        </section>
+        <section id="archive">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow">01 / THE COMPLETE COLLECTION</p>
+              <h2>CIRCUIT ARCHIVE<span id="archive-count">78</span></h2>
+            </div>
+            <p>From the first lights to the latest layout.</p>
+          </div>
+          <div class="filters">
+            <div class="filter-tabs" role="group" aria-label="Circuit period">
+              <button data-period="all" class="selected">All circuits</button
+              ><button data-period="recent">Recent circuits</button
+              ><button data-period="historic">Historic circuits</button>
+            </div>
+            <label class="search-wrap"
+              ><span>⌕</span
+              ><input
+                id="search"
+                type="search"
+                placeholder="Search circuit or country"
+                aria-label="Search circuit or country"
+              /><kbd>/</kbd></label
+            >
+          </div>
+          <div class="filter-secondary">
+            <div>
+              <label
+                >ERA
+                <select id="era" aria-label="Filter by racing era">
+                  <option value="all">All eras</option>
+                  <option value="1950">1950–1959</option>
+                  <option value="1960">1960–1969</option>
+                  <option value="1970">1970–1979</option>
+                  <option value="1980">1980–1989</option>
+                  <option value="1990">1990–1999</option>
+                  <option value="2000">2000–2009</option>
+                  <option value="2010">2010–2019</option>
+                  <option value="2020">2020–2026</option>
+                </select></label
+              ><label
+                >COUNTRY
+                <select id="country" aria-label="Filter by country">
+                  <option value="all">All countries</option>
+                </select></label
+              ><button id="reset" hidden>Reset filters ×</button>
+            </div>
+            <div>
+              <span id="results-count" role="status" aria-live="polite"></span
+              ><label class="sort-label"
+                ><select id="sort" aria-label="Sort circuits">
+                  <option value="curated">Featured first</option>
+                  <option value="name">Name A–Z</option>
+                  <option value="oldest">First Grand Prix</option>
+                  <option value="length">Longest first</option>
+                </select></label
+              ><button
+                id="grid-view"
+                class="view-button selected"
+                aria-label="Grid view"
+                aria-pressed="true"
+              >
+                ▦</button
+              ><button
+                id="list-view"
+                class="view-button"
+                aria-label="List view"
+                aria-pressed="false"
+              >
+                ☰
+              </button>
+            </div>
+          </div>
+          <div id="circuits" class="circuit-grid"></div>
+          <div id="empty" hidden>
+            <h3>No circuits on this racing line.</h3>
+            <p>Try another name, country or era.</p>
+            <button id="empty-reset">Reset filters</button>
+          </div>
+          <button id="load-more" class="load-more">
+            LOAD MORE CIRCUITS <span>+</span>
+          </button>
+          <div class="archive-footnote">
+            <span>RECENT = A WORLD CHAMPIONSHIP APPEARANCE SINCE 2025</span
+            ><span
+              >HISTORICAL CONFIGURATIONS MAY DIFFER FROM DISPLAYED
+              GEOMETRY</span
+            >
+          </div>
+        </section>
+        <footer>
+          <div class="brand">
+            <span class="brand-mark">F/</span
+            ><span>TELEMETRY<br /><b>ARCHIVE</b></span>
+          </div>
+          <p>
+            An independent archive for the racing obsessed.<br />Not affiliated
+            with Formula 1, the FIA or any racing team.
+          </p>
+          <button id="sources-footer">DATA SOURCES & METHODOLOGY</button
+          ><a href="#">BACK TO GRID ↑</a>
+        </footer>
+      </main>
+    </div>
+    <dialog id="telemetry" aria-labelledby="detail-title" data-lenis-prevent>
+      <div class="detail-header">
+        <span class="eyebrow"
+          >F/ TELEMETRY ARCHIVE <b>/</b> CIRCUIT DOSSIER</span
+        ><button id="close-detail" aria-label="Close circuit details">
+          CLOSE <kbd>ESC</kbd> ×
+        </button>
+      </div>
+      <div id="detail-body"></div>
+    </dialog>
+    <dialog id="info-dialog" data-lenis-prevent aria-labelledby="info-title">
+      <button id="close-info" aria-label="Close information">×</button>
+      <div id="info-content"></div>
+    </dialog>
+    <noscript
+      >This interactive archive needs JavaScript. Enable JavaScript and
+      reload.</noscript
+    >
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
